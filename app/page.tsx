@@ -1,65 +1,174 @@
-import Image from "next/image";
+"use client";
+
+import React from "react";
+import SplitText from "../components/SplitText";
+import { HeroParallax } from "../components/ui/hero-parallax";
+import { StaggeredMenu } from "../components/StaggeredMenu";
+import AboutSection from "../components/AboutSection";
+import FlowingMenu from "../components/FlowingMenu";
+import CustomTweetCard from "../components/CustomTweetCard";
+import Footer from "../components/Footer";
+import ScrollIndicator from "../components/ScrollIndicator";
+import ScrollToTop from "../components/ScrollToTop";
+
+export function HeroParallaxDemo() {
+  return <HeroParallax products={products} />;
+}
+export const products = [
+  {
+    title: "Netflix Clone",
+    link: "#",
+    thumbnail: "/netflixuhuy.png",
+  },
+  {
+    title: "Budayaku Website",
+    link: "#",
+    thumbnail: "/budayaku.png",
+  },
+  {
+    title: "KDMP x KFA Project",
+    link: "#",
+    thumbnail: "/kdmpxkfa.png",
+  },
+  {
+    title: "Coffee Shop Landing",
+    link: "#",
+    thumbnail: "/kopiuhuy.png",
+  },
+  {
+    title: "FindMeet App",
+    link: "#",
+    thumbnail: "/findmeet.jpg",
+  },
+  {
+    title: "Valid Project",
+    link: "#",
+    thumbnail: "/valid.png",
+  },
+  {
+    title: "Xyzie Portfolio",
+    link: "#",
+    thumbnail: "/xyzie.jpg",
+  },
+ {
+    title: "Valid",
+    link: "#",
+    thumbnail: "/valid.png",
+  },
+   {
+    title: "FindMeet Social",
+    link: "#",
+    thumbnail: "/findmeet.jpg",
+  },
+  {
+    title: "Netflix UI Redesign",
+    link: "#",
+    thumbnail: "/netflixuhuy.png",
+  },
+  {
+    title: "FindMeet Social",
+    link: "#",
+    thumbnail: "/findmeet.jpg",
+  },
+  {
+    title: "Digital Platform",
+    link: "#",
+    thumbnail: "/kdmpxkfa.png",
+  },
+  {
+    title: "Validuhuy",
+    link: "#",
+    thumbnail: "/valid.png",
+  },
+  {
+    title: "Creative Portfolio",
+    link: "#",
+    thumbnail: "/xyzie.jpg",
+  },
+ {
+    title: "Valid Dashboard",
+    link: "#",
+    thumbnail: "/valid.png",
+  },
+];
 
 export default function Home() {
+  const menuItems = [
+    { label: "Home", link: "#home", ariaLabel: "Navigate to home section" },
+    { label: "About", link: "#about", ariaLabel: "Navigate to about section" },
+    { label: "Projects", link: "#projects", ariaLabel: "Navigate to projects section" },
+  
+  ];
+
+  const socialLinks = [
+    { label: "Instagram", link: "https://www.instagram.com/detooseto/" },
+    { label: "GitHub", link: "https://github.com/FadhilAufa5" },
+    { label: "LinkedIn", link: "https://www.linkedin.com/in/fadhillaufars5" },
+    { label: "Portfolio", link: "https://fadhillaufars.vercel.app/" }
+  ];
+
+  const flowingMenuItems = [
+    { link: "#about", text: "jadi gini.." },
+    { link: "#projects", text: "gue buat portfolio" },
+    { link: "#projects", text: "bingung sebenarnya.." },
+    { link: "#contact", text: "tapi.. okelahh" }
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    
+    <div className="min-h-screen bg-zinc-50 font-sans dark:bg-black">
+      <StaggeredMenu 
+        items={menuItems}
+        socialItems={socialLinks}
+        displaySocials={true}
+        displayItemNumbering={true}
+        isFixed={true}
+        position="right"
+        colors={['#1a1a1a', '#2d2d2d', '#404040']}
+        accentColor="#5227FF"
+        menuButtonColor="#000"
+        openMenuButtonColor="#000"
+        changeMenuColorOnOpen={true}
+        closeOnClickAway={true}
+        logoUrl="/Logo Cretivox - Black.png"
+      />
+      <div id="home" className="relative flex min-h-screen items-center justify-center px-4 sm:px-6 md:px-8 py-16 sm:py-20">
+        <div className="relative z-10 w-full max-w-7xl mx-auto">
+          <SplitText
+            text="Hello, CRETIVOX!"
+            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[150px] font-semibold text-center text-black dark:text-white leading-tight"
+            delay={100}
+            duration={0.5}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            rootMargin="-100px"
+            textAlign="center"
+            onLetterAnimationComplete={() => {}}
+          />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+        <ScrollIndicator />
+      </div>
+
+      <section className="min-h-screen h-auto md:h-screen w-full relative">
+        <FlowingMenu items={flowingMenuItems} />
+      </section>
+
+      <div id="about">
+        <AboutSection />
+      </div>
+
+      <div id="projects">
+        <HeroParallaxDemo />
+      </div>
+
+      <CustomTweetCard />
+
+      <Footer />
+
+      <ScrollToTop />
     </div>
   );
 }
