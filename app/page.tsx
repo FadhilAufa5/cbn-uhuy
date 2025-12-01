@@ -11,6 +11,8 @@ import Footer from "../components/Footer";
 import ScrollIndicator from "../components/ScrollIndicator";
 import ScrollToTop from "../components/ScrollToTop";
 
+
+
 export function HeroParallaxDemo() {
   return <HeroParallax products={products} />;
 }
@@ -167,6 +169,8 @@ export default function Home() {
       <CustomTweetCard />
 
       <Footer />
+    
+     
 
       <ScrollToTop />
     </div>

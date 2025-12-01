@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
@@ -49,8 +50,9 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer ref={footerRef} className="bg-white dark:border-white py-8 md:py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+    <footer ref={footerRef} className="relative bg-white dark:border-white py-8 md:py-12 overflow-hidden">
+     
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
         <div className="flex flex-col items-center justify-center space-y-4">
           <p className="text-base sm:text-lg md:text-xl text-black dark:text-white font-medium text-center">
             Made with <span className="text-red-500 animate-pulse">❤️</span> by{' '}
