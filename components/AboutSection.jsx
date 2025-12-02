@@ -92,7 +92,7 @@ const AboutSection = () => {
                   src="/sapabae.png"
                   width={500}
                   height={600}
-                  cellSize={6}
+                  cellSize={4}
                   dotScale={0.6}
                   shape="circle"
                   backgroundColor="#000000"
@@ -114,6 +114,13 @@ const AboutSection = () => {
                   className="w-full h-auto"
                 />
               </div>
+            </div>
+            
+            {/* Caption Text */}
+            <div className="text-center mt-4 md:mt-6">
+              <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 font-medium italic">
+                "kalau mau liat lebih jelas, interview gue <span className="font-bold">HEHEHE"</span>
+              </p>
             </div>
           </div>
 
