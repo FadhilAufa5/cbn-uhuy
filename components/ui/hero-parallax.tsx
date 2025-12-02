@@ -58,7 +58,7 @@ export const HeroParallax = ({
   return (
     <div
       ref={ref}
-      className="h-[300vh] py-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[200vh] md:h-[300vh] py-12 md:py-20 lg:py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
       <Header />
       <motion.div
@@ -70,7 +70,7 @@ export const HeroParallax = ({
         }}
         className=""
       >
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-4 sm:space-x-8 md:space-x-12 lg:space-x-20 mb-12 sm:mb-16 md:mb-20">
+        <motion.div className="flex flex-row-reverse space-x-reverse space-x-4 sm:space-x-8 md:space-x-12 lg:space-x-20 mb-6 sm:mb-10 md:mb-16 lg:mb-20">
           {firstRow.map((product) => (
             <ProductCard
               product={product}
@@ -79,7 +79,7 @@ export const HeroParallax = ({
             />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row mb-12 sm:mb-16 md:mb-20 space-x-4 sm:space-x-8 md:space-x-12 lg:space-x-20">
+        <motion.div className="flex flex-row mb-6 sm:mb-10 md:mb-16 lg:mb-20 space-x-4 sm:space-x-8 md:space-x-12 lg:space-x-20">
           {secondRow.map((product) => (
             <ProductCard
               product={product}
@@ -116,13 +116,13 @@ export const Header = () => {
     <motion.div 
       ref={headerRef}
       style={{ y, opacity }}
-      className="max-w-7xl relative mx-auto py-12 sm:py-16 md:py-20 lg:py-40 px-4 sm:px-6 md:px-8 w-full left-0 top-0"
+      className="max-w-7xl relative mx-auto py-8 sm:py-12 md:py-16 lg:py-40 px-4 sm:px-6 md:px-8 w-full left-0 top-0"
     >
       <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold dark:text-white leading-tight">
         Project Aku & <br />
         Disini mau cerita sedikit 🙏🏻
       </h1>
-      <p className="max-w-2xl text-sm sm:text-base md:text-lg lg:text-xl mt-6 sm:mt-8 dark:text-neutral-200 leading-relaxed">
+      <p className="max-w-2xl text-sm sm:text-base md:text-lg lg:text-xl mt-4 sm:mt-6 md:mt-8 dark:text-neutral-200 leading-relaxed">
    gue bikin beberapa project di tempat magang gua kemaren, dan project gue pribadi.
    sebenarnya sih masih banyak yang gue explore, dan gue juga masih belajar banyak hal tentang development, desain, dan lain-lain. 
    gue tertarik banget sama dunia kreatif digital, dan gue juga tertarik sama dunia desain gue juga sempet bingung 

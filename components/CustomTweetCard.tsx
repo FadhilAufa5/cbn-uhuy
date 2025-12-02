@@ -105,10 +105,10 @@ const CustomTweetCard = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen bg-white dark:bg-black px-4 sm:px-6 md:px-12 py-20"
+      className="min-h-[50vh] md:min-h-screen bg-white dark:bg-black px-4 sm:px-6 md:px-12 py-8 md:py-12 lg:py-20"
     >
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-black dark:text-white uppercase tracking-[-1px] sm:tracking-[-2px] leading-none text-center mb-12 md:mb-16">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-black dark:text-white uppercase tracking-[-1px] sm:tracking-[-2px] leading-none text-center mb-8 md:mb-12 lg:mb-16">
           apa kata dunia 😂
         </h2>
         

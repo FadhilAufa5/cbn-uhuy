@@ -95,6 +95,8 @@ export const products = [
 ];
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   const menuItems = [
     { label: "Home", link: "#home", ariaLabel: "Navigate to home section" },
     { label: "About", link: "#about", ariaLabel: "Navigate to about section" },
@@ -118,7 +120,14 @@ export default function Home() {
 
   return (
     
-    <div className="min-h-screen bg-zinc-50 font-sans dark:bg-black">
+    <div className="min-h-screen bg-zinc-50 font-sans dark:bg-black relative">
+      {/* Overlay backdrop ketika menu terbuka */}
+      <div 
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-30 transition-opacity duration-500 ${
+          isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        aria-hidden="true"
+      />
       <StaggeredMenu 
         items={menuItems}
         socialItems={socialLinks}
@@ -133,46 +142,53 @@ export default function Home() {
         changeMenuColorOnOpen={true}
         closeOnClickAway={true}
         logoUrl="/Logo Cretivox - Black.png"
+        onMenuOpen={() => setIsMenuOpen(true)}
+        onMenuClose={() => setIsMenuOpen(false)}
       />
-      <div id="home" className="relative flex min-h-screen items-center justify-center px-4 sm:px-6 md:px-8 py-16 sm:py-20">
-        <div className="relative z-10 w-full max-w-7xl mx-auto">
-          <SplitText
-            text="Hello, CRETIVOX!"
-            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[150px] font-semibold text-center text-black dark:text-white leading-tight"
-            delay={100}
-            duration={0.5}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="center"
-            onLetterAnimationComplete={() => {}}
-          />
+      
+      {/* Konten utama dengan efek blur dan transform ketika menu terbuka */}
+      <div className={`transition-all duration-700 ease-out ${
+        isMenuOpen ? 'blur-sm scale-95 brightness-75' : 'blur-0 scale-100 brightness-100'
+      }`}>
+        <div id="home" className="relative flex min-h-[80vh] md:min-h-screen items-center justify-center px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-20">
+          <div className="relative z-10 w-full max-w-7xl mx-auto">
+            <SplitText
+              text="Hello, CRETIVOX!"
+              className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[150px] font-semibold text-center text-black dark:text-white leading-tight"
+              delay={100}
+              duration={0.5}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+              rootMargin="-100px"
+              textAlign="center"
+              onLetterAnimationComplete={() => {}}
+            />
+          </div>
+          <ScrollIndicator />
         </div>
-        <ScrollIndicator />
+
+        <section className="min-h-[60vh] md:min-h-screen h-auto w-full relative py-0">
+          <FlowingMenu items={flowingMenuItems} />
+        </section>
+
+        <div id="about" className="py-0">
+          <AboutSection />
+        </div>
+
+        <div id="projects" className="py-0">
+          <HeroParallaxDemo />
+        </div>
+        
+        <div className="py-0">
+          <CustomTweetCard />
+        </div>
+        
+        <Footer />
+        <ScrollToTop />
       </div>
-
-      <section className="min-h-screen h-auto md:h-screen w-full relative">
-        <FlowingMenu items={flowingMenuItems} />
-      </section>
-
-      <div id="about">
-        <AboutSection />
-      </div>
-
-      <div id="projects">
-        <HeroParallaxDemo />
-      </div>
-
-      <CustomTweetCard />
-
-      <Footer />
-    
-     
-
-      <ScrollToTop />
     </div>
   );
 }
