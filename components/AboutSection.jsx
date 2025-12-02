@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
+import { PixelatedCanvas } from './ui/pixelated-canvas';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,7 +22,7 @@ const AboutSection = () => {
 
     if (!section || !image || !content || !skills) return;
 
-    gsap.set([image, content, skills], { opacity: 0, y: 50 });
+    gsap.set([image, content, skills], { opacity: 0, y: 30, willChange: 'opacity, transform' });
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -32,21 +33,21 @@ const AboutSection = () => {
       }
     });
 
-    tl.to(image, { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out' })
-      .to(content, { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out' }, '-=0.5')
-      .to(skills, { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out' }, '-=0.5');
+    tl.to(image, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', clearProps: 'willChange' })
+      .to(content, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', clearProps: 'willChange' }, '-=0.4')
+      .to(skills, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', clearProps: 'willChange' }, '-=0.4');
 
     const skillItems = skills.querySelectorAll('.skill-item');
     skillItems.forEach((item, index) => {
       gsap.fromTo(
         item,
-        { x: -50, opacity: 0 },
+        { x: -30, opacity: 0 },
         {
           x: 0,
           opacity: 1,
-          duration: 0.6,
-          delay: index * 0.1,
-          ease: 'power4.out',
+          duration: 0.5,
+          delay: index * 0.08,
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: item,
             start: 'top 90%',
@@ -54,22 +55,6 @@ const AboutSection = () => {
           }
         }
       );
-    });
-
-    // Parallax effect for text paragraphs
-    const parallaxTexts = content.querySelectorAll('.parallax-text');
-    parallaxTexts.forEach((text) => {
-      const speed = parseFloat(text.getAttribute('data-speed')) || 0.5;
-      gsap.to(text, {
-        y: -50 * speed,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: text,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1
-        }
-      });
     });
 
     return () => {
@@ -99,25 +84,35 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 lg:gap-20 items-start mb-8 md:mb-16 lg:mb-24">
           {/* Image Section */}
           <div ref={imageRef} className="relative px-4 md:px-0">
-            <div className="relative w-full aspect-square max-w-sm sm:max-w-md md:max-w-lg mx-auto group">
-          
+            <div className="relative w-full max-w-md mx-auto group">
               <div className="absolute inset-0 bg-black dark:bg-white transform translate-x-4 translate-y-4 transition-transform duration-500 group-hover:translate-x-6 group-hover:translate-y-6"></div>
               
-              {/* Image Container */}
-              <div className="relative w-full h-full border-4 border-black dark:border-white overflow-hidden bg-white dark:bg-black transition-all duration-500 group-hover:shadow-2xl">
-                <Image
+              <div className="relative w-full border-4 border-black dark:border-white overflow-hidden bg-black dark:bg-black transition-all duration-500 group-hover:shadow-2xl">
+                <PixelatedCanvas
                   src="/sapabae.png"
-                  alt="Fadhil Aufa - Front-End Developer 👋"
                   width={500}
-                  height={500}
-                  className="w-200 h-160 object-center grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                  priority
+                  height={600}
+                  cellSize={6}
+                  dotScale={0.6}
+                  shape="circle"
+                  backgroundColor="#000000"
+                  grayscale={false}
+                  interactive={true}
+                  distortionStrength={15}
+                  distortionRadius={150}
+                  distortionMode="swirl"
+                  followSpeed={0.2}
+                  tintColor="#5227FF"
+                  tintStrength={0.2}
+                  objectFit="cover"
+                  jitterStrength={6}
+                  jitterSpeed={4}
+                  fadeOnLeave={true}
+                  fadeSpeed={0.15}
+                  dropoutStrength={0.3}
+                  maxFps={30}
+                  className="w-full h-auto"
                 />
-              </div>
-
-              {/* Name Badge */}
-              <div className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-black dark:bg-white px-6 py-3 md:px-10 md:py-5 shadow-2xl transform rotate-3 group-hover:rotate-0 group-hover:scale-110 transition-all duration-500 z-10">
-                <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-white dark:text-black uppercase tracking-[-1px] leading-none">Fadhil Aufa</p>
               </div>
             </div>
           </div>
@@ -134,20 +129,20 @@ const AboutSection = () => {
               
             </div>
 
-            <div className="space-y-4 sm:space-y-5 md:space-y-6 text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed font-medium parallax-container">
-              <p className="parallax-text" data-speed="0.5">
+            <div className="space-y-4 sm:space-y-5 md:space-y-6 text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed font-medium">
+              <p>
                 Halo! Gue Fadhil Aufa, seorang web developer yang passionate dalam membangun 
                 aplikasi modern dan high-performance dengan user experience yang intuitif. 
                 Gue senang bekerja dengan teknologi terkini seperti Artificial Intelligence, 
                 Machine Learning, dan Web development, menggabungkan kreativitas dengan 
                 presisi untuk menghasilkan solusi yang berdampak.
               </p>
-              <p className="parallax-text" data-speed="0.6">
+              <p>
                 Dengan pengalaman lebih dari 2 tahun dan lebih dari 20 project yang sudah selesai, 
                 gue berkomitmen untuk membantu user dan bisnis berkembang di era digital melalui 
                 produk digital yang fungsional, estetik, dan scalable.
               </p>
-              <p className="parallax-text pt-3 sm:pt-4 border-t border-gray-300 dark:border-gray-700" data-speed="0.7">
+              <p className="pt-3 sm:pt-4 border-t border-gray-300 dark:border-gray-700">
                 <span className="font-semibold text-black dark:text-white uppercase tracking-tight text-sm sm:text-base">
                 "Code is poetry, UI is art - together they create magic."</span>
               </p>
